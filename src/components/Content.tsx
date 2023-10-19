@@ -1,5 +1,7 @@
+
 import Link from 'next/link'
 import React from 'react'
+import { typeToColor } from '@/utils/typeToColor'
 
 const Content = () => {
 
@@ -90,9 +92,14 @@ const Content = () => {
     },
   ]
 
+  const updatedContentData = contentData.map((item) => ({
+    ...item,
+    color: typeToColor[item.type] || '',
+  }));
+
   return (
     <div className='flex flex-col w-full h-[700px] gap-y-4 overflow-y-auto'>
-      {contentData.map((item, index) => (
+      {updatedContentData.map((item, index) => (
         <div 
           key={index}
           className='
@@ -108,11 +115,11 @@ const Content = () => {
           <div className='flex flex-row gap-x-6 items-center'>
             <p className='text-xl'>
               {item.description} 
-              {/* <Link href={item.source} className='inline-block ml-4 text-neutral-400'>
-                <p className='text-lg'>(Source)</p>
-              </Link> */}
+              <Link href={item.source} className='inline-block ml-4 text-neutral-400 text-lg'>
+                (Source)
+              </Link>
             </p>
-            <div className='bg-slate-700 p-2 rounded-xl'>
+            <div className={`${item.color} p-2 rounded-xl`}>
               <p className='text-sm font-bold'>
                 {item.type}
               </p>

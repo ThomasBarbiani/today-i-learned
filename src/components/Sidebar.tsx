@@ -1,6 +1,7 @@
 import { typeToColor} from '@/utils/typeToColor'
 
 import React from 'react'
+import {typeData} from '@/utils/typeData'
 
 const Sidebar = () => {
 

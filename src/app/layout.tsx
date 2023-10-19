@@ -20,8 +20,8 @@ export default function RootLayout({
         className={`
           ${inter.className} 
           min-h-screen 
-        bg-[#242120]
-        text-white
+          bg-[#242120]
+          text-white
           py-16
           px-36
         `}

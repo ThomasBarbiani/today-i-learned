@@ -1,31 +1,12 @@
+
 import Link from 'next/link'
 import React from 'react'
-import { contentData } from '@/data/contentData'
-import {typeData} from '@/utils/typeData'
-
-interface ContentItem {
-  color: string; 
-  description: string; 
-  source: string; 
-  type: string;
-}
-
-interface TypeItem {
-  label: string;
-  color: string;
-}
-
-const typeToColor: { [key: string]: string } = {};
-
-typeData.forEach((typeObj: TypeItem) => {
-  typeToColor[typeObj.label] = typeObj.color;
-});
-
-console.log(typeToColor)
+import { typeToColor } from '@/utils/typeToColor'
+import { contentData } from '@/data/contentData';
 
 const Content = () => {
 
-  const updatedContentData: ContentItem[] = contentData.map((item) => ({
+  const updatedContentData = contentData.map((item) => ({
     ...item,
     color: typeToColor[item.type] || '',
   }));
@@ -48,10 +29,11 @@ const Content = () => {
           <div className='flex flex-row gap-x-6 items-center'>
             <p className='text-xl'>
               {item.description} 
+              <Link href={item.source} className='inline-block ml-4 text-neutral-400 text-lg'>
+                (Source)
+              </Link>
             </p>
-            {/* <Link href={item.source} className='inline-block ml-4 text-neutral-400'>
-              <p className='text-lg'>(Source)</p>
-            </Link> */}
+
             <div className={`${item.color} p-2 rounded-xl`}>
               <p className='text-sm font-bold'>
                 {item.type}
@@ -71,7 +53,6 @@ const Content = () => {
           </div>
         </div>
       ))}
-        
     </div>
   )
 }

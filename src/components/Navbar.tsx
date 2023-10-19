@@ -17,7 +17,7 @@ const Navbar = () => {
             TODAY I LEARNED
           </h1>
         </div>
-        <button className='bg-slate-500 rounded-full py-4 px-8' onClick={() => setShowForm((item) => !item)}>
+        <button className='bg-gradient-to-r from-red-500 via-yellow-500  to-green-500 text-white rounded-full py-4 px-8' onClick={() => setShowForm((item) => !item)}>
           <p className='text-2xl font-bold'>
             SHARE A FACT
           </p>

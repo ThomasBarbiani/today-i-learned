@@ -1,4 +1,5 @@
 export const typeToColor: Record<string, string> = {
+  ALL: 'bg-gradient-to-r from-red-500 via-yellow-500  to-green-500',
   TECHNOLOGY: 'bg-blue-600',
   SCIENCE: 'bg-green-600',
   FINANCE: 'bg-rose-600',

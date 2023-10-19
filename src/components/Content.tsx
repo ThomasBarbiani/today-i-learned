@@ -1,98 +1,38 @@
 import Link from 'next/link'
 import React from 'react'
+import { contentData } from '@/data/contentData'
+import {typeData} from '@/utils/typeData'
+
+interface ContentItem {
+  color: string; 
+  description: string; 
+  source: string; 
+  type: string;
+}
+
+interface TypeItem {
+  label: string;
+  color: string;
+}
+
+const typeToColor: { [key: string]: string } = {};
+
+typeData.forEach((typeObj: TypeItem) => {
+  typeToColor[typeObj.label] = typeObj.color;
+});
+
+console.log(typeToColor)
 
 const Content = () => {
 
-  const contentData = [
-    {
-      description: 'React is being developed by Meta (formerly facebook)',
-      source: '',
-      type: 'TECHNOLOGY'
-    },
-    {
-      description: `The shortest war in history lasted 38 minutes! It was between 
-      Britain and Zanzibar on August 27, 1896. It was over the ascension of the
-      next Sultan in Zanzibar and resulted in a British victory.`,
-      source: '',
-      type: 'HISTORY'
-    },
-    {
-      description: 'React is being developed by Meta (formerly facebook)',
-      source: '',
-      type: 'TECHNOLOGY'
-    },
-    {
-      description: `The shortest war in history lasted 38 minutes! It was between 
-      Britain and Zanzibar on August 27, 1896. It was over the ascension of the
-      next Sultan in Zanzibar and resulted in a British victory.`,
-      source: '',
-      type: 'HISTORY'
-    },
-    {
-      description: 'React is being developed by Meta (formerly facebook)',
-      source: '',
-      type: 'TECHNOLOGY'
-    },
-    {
-      description: `The shortest war in history lasted 38 minutes! It was between 
-      Britain and Zanzibar on August 27, 1896. It was over the ascension of the
-      next Sultan in Zanzibar and resulted in a British victory.`,
-      source: '',
-      type: 'HISTORY'
-    },
-    {
-      description: 'React is being developed by Meta (formerly facebook)',
-      source: '',
-      type: 'TECHNOLOGY'
-    },
-    {
-      description: `The shortest war in history lasted 38 minutes! It was between 
-      Britain and Zanzibar on August 27, 1896. It was over the ascension of the
-      next Sultan in Zanzibar and resulted in a British victory.`,
-      source: '',
-      type: 'HISTORY'
-    },
-    {
-      description: 'React is being developed by Meta (formerly facebook)',
-      source: '',
-      type: 'TECHNOLOGY'
-    },
-    {
-      description: `The shortest war in history lasted 38 minutes! It was between 
-      Britain and Zanzibar on August 27, 1896. It was over the ascension of the
-      next Sultan in Zanzibar and resulted in a British victory.`,
-      source: '',
-      type: 'HISTORY'
-    },
-    {
-      description: 'React is being developed by Meta (formerly facebook)',
-      source: '',
-      type: 'TECHNOLOGY'
-    },
-    {
-      description: `The shortest war in history lasted 38 minutes! It was between 
-      Britain and Zanzibar on August 27, 1896. It was over the ascension of the
-      next Sultan in Zanzibar and resulted in a British victory.`,
-      source: '',
-      type: 'HISTORY'
-    },
-    {
-      description: 'React is being developed by Meta (formerly facebook)',
-      source: '',
-      type: 'TECHNOLOGY'
-    },
-    {
-      description: `The shortest war in history lasted 38 minutes! It was between 
-      Britain and Zanzibar on August 27, 1896. It was over the ascension of the
-      next Sultan in Zanzibar and resulted in a British victory.`,
-      source: '',
-      type: 'HISTORY'
-    },
-  ]
+  const updatedContentData: ContentItem[] = contentData.map((item) => ({
+    ...item,
+    color: typeToColor[item.type] || '',
+  }));
 
   return (
     <div className='flex flex-col w-full h-[700px] gap-y-4 overflow-y-auto'>
-      {contentData.map((item, index) => (
+      {updatedContentData.map((item, index) => (
         <div 
           key={index}
           className='
@@ -108,11 +48,11 @@ const Content = () => {
           <div className='flex flex-row gap-x-6 items-center'>
             <p className='text-xl'>
               {item.description} 
-              {/* <Link href={item.source} className='inline-block ml-4 text-neutral-400'>
-                <p className='text-lg'>(Source)</p>
-              </Link> */}
             </p>
-            <div className='bg-slate-700 p-2 rounded-xl'>
+            {/* <Link href={item.source} className='inline-block ml-4 text-neutral-400'>
+              <p className='text-lg'>(Source)</p>
+            </Link> */}
+            <div className={`${item.color} p-2 rounded-xl`}>
               <p className='text-sm font-bold'>
                 {item.type}
               </p>

@@ -33,7 +33,10 @@ const Content = () => {
                 (Source)
               </Link>
             </p>
-            <div className={`${item.color} p-2 rounded-xl`}>
+            <div 
+              className="p-2 rounded-full" 
+              style={{ backgroundColor: item.color}}
+            >
               <p className='text-sm font-bold'>
                 {item.type}
               </p>
